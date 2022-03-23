@@ -5,6 +5,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #333335;
+}
+.hero{  background-color: #333335;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(252, 233, 233);
+  margin: 0;
+}
+section {
+    padding: 5em 2em;
 }
 
 code {
