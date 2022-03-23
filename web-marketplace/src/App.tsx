@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-    </div>
+<div className="hero">
+<h1 className="hero-header">
+slogan tähän
+</h1>
+</div>
   );
 }
 
