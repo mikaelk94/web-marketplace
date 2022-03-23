@@ -1,15 +1,15 @@
 .App {
   text-align: center;
 }
-.App-header {
+.hero-header {
   background-color: #333335;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: rgb(163, 136, 136);
+  text-align: center;
+  font-size: calc(20px + 2vmin);
+  color: rgb(252, 233, 233);
+  padding:3em;
+  margin: 0;
 }
-
 
