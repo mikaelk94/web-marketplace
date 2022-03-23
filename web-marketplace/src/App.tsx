@@ -1,13 +1,18 @@
 import React from 'react';
 import './App.css';
+import Navbar from './components/navbar/navbar'
 
 function App() {
   return (
-<div className="hero">
-<h1 className="hero-header">
-slogan tähän
-</h1>
-</div>
+
+    <div className="App">
+      <Navbar />
+      <div>
+        <h1 className="hero-header">
+          Slogan tähän
+        </h1>
+      </div>
+    </div>
   );
 }
 
