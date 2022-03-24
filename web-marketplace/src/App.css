@@ -1,15 +1,14 @@
 .App {
   font-family: 'Montserrat', sans-serif;
-}
-.hero-header {
   background-color: #333335;
   min-height: 100vh;
+}
+.hero-header {
   display: flex;
   flex-direction: column;
   text-align: center;
   font-size: calc(20px + 2vmin);
   color: rgb(252, 233, 233);
-  padding:3em;
+  padding: 2em;
   margin: 0;
 }
-
