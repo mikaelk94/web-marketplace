@@ -1,9 +1,13 @@
 import React from 'react'
-import { MenuItems } from "./menuItems"
 import './navbar.css'
+import { Link } from 'react-router-dom'
+import login from '../../login'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import App from "../../App"
+import Login from "../../login"
 
 class Navbar extends React.Component {
-    state = { clicked: false }
+
 
     render() {
         return (
@@ -15,15 +19,10 @@ class Navbar extends React.Component {
 
                 </div>
                 <ul className="nav-menu">
-                    {MenuItems.map((item, index) => {
-                        return (
-                            <li key={index}><a className={item.cName} href={item.url}>
-                                {item.title}
-                            </a>
-                            </li>
-                        )
-                    })}
-
+                    <li><Link to="/">Etusivu</Link></li>
+                    <li><Link to="/">Services</Link></li>
+                    <li><Link to="/">Products</Link></li>
+                    <li><Link to="/login">Kirjaudu sisään</Link></li>
                 </ul>
             </nav>
         )
