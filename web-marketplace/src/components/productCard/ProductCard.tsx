@@ -5,14 +5,18 @@ interface Props {
   price?: string
   location?: string
   title?: string
+  image?: string
 }
 
 const ProductCard = (props: Props) => {
   return (
     <div className='product-card'>
-      <h3>{props.title}</h3>
-      <div>{props.location}</div>
-      <div>{props.price}</div>
+      <div className='product-title'>{props.title}</div>
+      <div className='product-location'>{props.location}</div>
+      <div className='image-div'>
+        <img src={props.image} className='product-image' />
+      </div>
+      <div className='product-price'>{props.price} €</div>
     </div>
   )
 }
