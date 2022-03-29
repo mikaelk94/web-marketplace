@@ -2,7 +2,7 @@
   display: grid;
   row-gap: 10px;
   column-gap: 10px;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 98%;
   margin: 1rem;
   margin-top: 3rem;
   justify-content: center;
@@ -11,16 +11,49 @@
 
 .product-card {
   border: 1px solid black;
-  background-color: rgb(134, 130, 130);
+  background-color: rgb(255, 255, 255);
   border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  height: 250px;
+  height: 350px;
 }
 
-@media only screen and (min-width: 950px) {
+.product-title {
+  text-transform: capitalize;
+  text-align: left;
+  margin-top: 10px;
+  margin-left: 15px;
+  font-weight: bold;
+}
+.product-location {
+  text-transform: capitalize;
+  text-align: left;
+  margin-left: 15px;
+}
+.product-price {
+  text-align: right;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-right: 20px;
+  margin-top: 25px;
+}
+.image-div {
+  margin-top: 25px;
+  height: 13em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+}
+.product-image {
+  width: 200px;
+}
+
+@media only screen and (min-width: 600px) {
   /* For desktop: */
   .product-container {
-    grid-template-columns: 300px 300px 300px;
+    grid-template-columns: 48% 48%;
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  /* For desktop: */
+  .product-container {
+    grid-template-columns: 330px 330px 330px;
   }
 }

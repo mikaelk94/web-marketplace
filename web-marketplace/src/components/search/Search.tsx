@@ -8,9 +8,14 @@ interface Posting {
   product: {
     title?: string
     price?: string
+    images: string[]
     location?: string
   }[]
   posting?: string
+  category: string[]
+}
+
+interface Category {
   category: string
 }
 
@@ -22,8 +27,9 @@ const Search = () => {
   const [allPostings, setAllPostings] = useState<Array<Posting>>([])
   const [postings, setPostings] = useState<Posting['product']>([])
   const [category, setCategory] = useState('')
-  /* const [categories, setCategories] = useState<Array<string>>([]) */
+  /* const [categories, setCategories] = useState<Posting['category']>([]) */
   const [count, setCount] = useState<number>()
+  let categoriesArray: string[] = []
 
   const getPostings = async () => {
     try {
@@ -33,6 +39,12 @@ const Search = () => {
         setPostings(response.data)
         console.log(response.data)
         setCount(response.data.length)
+        response.data.map((posting: Category) => {
+          if (!categoriesArray.includes(posting.category)) {
+            categoriesArray.push(posting.category)
+          }
+        })
+        console.log(categoriesArray)
       } else {
         const response = await instance.get('/postings', {
           params: { category: category },
@@ -84,6 +96,7 @@ const Search = () => {
             key={i}
             title={posting.title}
             location={posting.location}
+            image={posting.images[0]}
             price={posting.price}
           />
         ))}
