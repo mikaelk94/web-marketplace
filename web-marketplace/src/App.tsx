@@ -4,7 +4,10 @@ import Navbar from './components/navbar/navbar'
 import Search from './components/search/Search'
 import Login from './login'
 import Home from './home'
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+
 
 function App() {
   return (

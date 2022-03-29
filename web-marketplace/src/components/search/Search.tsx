@@ -15,7 +15,7 @@ interface Posting {
 }
 
 const instance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: 'https://verkkokauppa-api.herokuapp.com/',
 })
 
 const Search = () => {
@@ -41,7 +41,7 @@ const Search = () => {
         console.log(response.data)
         setCount(response.data.length)
       }
-    } catch (err) {}
+    } catch (err) { }
   }
 
   useEffect(() => {
