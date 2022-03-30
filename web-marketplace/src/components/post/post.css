@@ -1,0 +1,108 @@
+
+.Newpost{
+    display: flex;
+    grid-template-columns: 98%;
+    margin: rem;
+    margin-top: 3rem;
+    justify-content: center;
+    align-items: center;
+  }
+.Postbox{
+    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    height: 400px;
+    width: 400px;
+}
+
+  .Post{
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+.Post h3{
+
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+
+}
+.Post input{
+
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+.Category{
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+.Category h3{
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+.Price{
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+.Price h3{
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+.Price input{
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+.Location{
+
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+.Location input{
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+.Image{
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+.Image h3{ 
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+@media only screen and (min-width: 600px) {
+    /* For desktop: */
+    .Newpost {
+      grid-template-columns: 48% 48%;
+    }
+  }
+
+  @media only screen and (min-width: 1050px) {
+    /* For desktop: */
+    .Newpost {
+      grid-template-columns: 330px 330px 330px;
+    }
+  }
+  
