@@ -24,68 +24,59 @@ const instance: AxiosInstance = axios.create({
 })
 
 const Search = () => {
-  const [allPostings, setAllPostings] = useState<Array<Posting>>([])
   const [postings, setPostings] = useState<Posting['product']>([])
-  const [category, setCategory] = useState('')
-  /* const [categories, setCategories] = useState<Posting['category']>([]) */
+  const [category, setCategory] = useState<string>('Kaikki osastot')
   const [count, setCount] = useState<number>()
-  let categoriesArray: string[] = []
+  const [input, setInput] = useState('')
+  const [categories, setCategories] = useState<Posting['category']>([
+    'Kaikki osastot',
+  ])
+  let categoriesArray: string[] = ['Kaikki osastot']
 
   const getPostings = async () => {
     try {
-      if (category === 'Kaikki osastot' || category === '') {
+      // Haetaan kaikki postaukset
+      if (category === 'Kaikki osastot') {
         const response = await instance.get('/postings')
-        setAllPostings(response.data)
-        setPostings(response.data)
-        console.log(response.data)
-        setCount(response.data.length)
         response.data.map((posting: Category) => {
           if (!categoriesArray.includes(posting.category)) {
             categoriesArray.push(posting.category)
+            /* console.log(posting.category) */
           }
         })
-        console.log(categoriesArray)
-      } else {
+        setPostings(response.data)
+        setCount(response.data.length)
+        setCategories(categoriesArray)
+        /* console.log(categoriesArray) */
+      }
+      // Haetaan kategorian perusteella
+      else {
         const response = await instance.get('/postings', {
           params: { category: category },
         })
         setPostings(response.data)
-        console.log(response.data)
         setCount(response.data.length)
+        /* console.log(response.data) */
       }
-    } catch (err) { }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   useEffect(() => {
     getPostings()
   }, [])
 
-  /* const updateCategories = async () => {
-    try {
-      allPostings.map((posting) => {
-        if (!categories.includes(posting.category)) {
-          categories.push(posting.category)
-        }
-      })
-      console.log(categories)
-    } catch (err) {}
-  } */
-
-  /* useEffect(() => {
-    updateCategories()
-  }, [allPostings]) */
-
   return (
     <div className='Search'>
-      <input type='text' />
-      <select
-        name='categoryList'
-        id='categoryList'
-        onChange={(e) => setCategory(e.target.value)}
-      >
-        <option key='kaikki'>Kaikki osastot</option>
-        {allPostings.map((posting, i) => (
-          <option key={i}>{posting.category}</option>
+      <input
+        type='text'
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <select onChange={(e) => setCategory(e.target.value)}>
+        {categories.map((posting, i) => (
+          <option key={i}>{posting}</option>
         ))}
       </select>
       <button onClick={getPostings}>Search</button>
