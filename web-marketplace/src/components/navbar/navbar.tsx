@@ -17,10 +17,14 @@ class Navbar extends React.Component {
           </li>
           <li>
             <Link to='/'>Products</Link>
+          </li>          
+          <li>
+            <Link to='/post'>Jätä ilmoitus</Link>
           </li>
           <li>
             <Link to='/login'>Kirjaudu sisään</Link>
           </li>
+
         </ul>
       </nav>
     )
