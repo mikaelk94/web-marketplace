@@ -1,35 +1,51 @@
 import '../../App.css'
-import Navbar from '../navbar/navbar'
-import axios from 'axios'
 import './login.css'
+import { useState, useEffect, useRef, useContext } from 'react'
+import Navbar from '../navbar/navbar'
+import { UserContext } from '../../UserContext'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const session_url = 'https://verkkokauppa-api.herokuapp.com/login'
 
-const loginfunc = async () => {
-  let user = (document.getElementById('username') as HTMLInputElement).value
-  let pass = (document.getElementById('password') as HTMLInputElement).value
-  axios
-    .post(
-      session_url,
-      {},
-      {
-        auth: {
-          username: user,
-          password: pass,
-        },
-      }
-    )
-    .then(function (response) {
-      console.log('Authenticated')
-      console.log(response.data)
-      console.log(user, pass)
-    })
-    .catch(function (error) {
-      console.log('Error on Authentication')
-    })
-}
-
 function Login() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const { token, setToken } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
+  const inputRef = useRef<any>(null)
+
+  const loginfunc = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    axios
+      .post(
+        session_url,
+        {},
+        {
+          auth: {
+            username: username,
+            password: password,
+          },
+        }
+      )
+      .then(function (response) {
+        if (response.status === 200) {
+          setUser(true)
+          setToken(response.data.token)
+          Cookies.set('user', 'true')
+          Cookies.set('token', response.data.token)
+        }
+      })
+      .catch(function (error) {
+        console.log('Error on Authentication')
+        console.log(error)
+      })
+  }
+
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
+
   return (
     <div className='etusivu'>
       <Navbar />
@@ -40,16 +56,31 @@ function Login() {
             <h2>Kirjaudu sisään</h2>
             <div className='form-group'>
               <label htmlFor='name'>Käyttäjänimi</label>
-              <input type='text' name='name' id='username' />
+              <input
+                ref={inputRef}
+                type='text'
+                name='name'
+                id='username'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
             </div>
             <div className='form-group'>
               <label htmlFor='password'>Salasana</label>
-              <input type='password' name='password' id='password' />
+              <input
+                type='password'
+                name='password'
+                id='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <button className='btn' onClick={loginfunc}>
               Kirjaudu sisään
             </button>
-            <button className='btn'>Rekisteröidy</button>
+            <div className='link'>
+              <a href='#'>Rekisteröidy</a>
+            </div>
           </div>
         </form>
       </div>
