@@ -6,14 +6,17 @@ import Home from './components/home/Home'
 import Post from './components/post/post'
 import { UserContext } from './UserContext'
 import Cookies from 'js-cookie'
+import Register from './components/register/register'
+
 
 function App() {
   const [user, setUser] = useState(false)
   const [token, setToken] = useState('null')
+  const [register, setRegister] = useState(false)
 
   const userValues = useMemo(
-    () => ({ user, setUser, token, setToken }),
-    [user, setUser, token, setToken]
+    () => ({ user, setUser, token, setToken, register, setRegister }),
+    [user, setUser, token, setToken, register, setRegister]
   )
 
   useEffect(() => {
@@ -36,6 +39,9 @@ function App() {
               element={user ? <Navigate replace to='/' /> : <Login />}
             />
             <Route path='/post' element={<Post />} />
+            <Route
+              path='/register'
+              element={register ? <Navigate replace to='/login' /> : <Register />} />
           </Routes>
         </UserContext.Provider>
       </div>
