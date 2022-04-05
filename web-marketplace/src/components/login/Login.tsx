@@ -79,7 +79,7 @@ function Login() {
               Kirjaudu sisään
             </button>
             <div className='link'>
-              <a href='#'>Rekisteröidy</a>
+              <a href='register'>Rekisteröidy</a>
             </div>
           </div>
         </form>

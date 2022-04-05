@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.loginForm input,
+.registerForm input,
 .btn {
   appearance: none;
   background-color: #e5e5e5;
@@ -13,8 +13,15 @@
   outline: none;
 }
 
-.loginForm {
-  height: 40vh;
+.errorLabel {
+  color: red;
+  font-weight: 700;
+  padding-bottom: 10px;
+  font-size: 18px;
+}
+
+.registerForm {
+  height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
