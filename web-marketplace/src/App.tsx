@@ -7,6 +7,7 @@ import Post from './components/post/post'
 import { UserContext } from './UserContext'
 import Cookies from 'js-cookie'
 import Register from './components/register/register'
+import Myposts from './components/myposts/myposts'
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
               element={user ? <Navigate replace to='/' /> : <Login />}
             />
             <Route path='/post' element={<Post />} />
+            <Route path='/myposts' element={<Myposts />} />
             <Route
               path='/register'
               element={register ? <Navigate replace to='/login' /> : <Register />} />
