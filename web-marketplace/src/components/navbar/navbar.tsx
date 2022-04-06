@@ -28,6 +28,12 @@ function Navbar() {
             <Link to='/login'>Kirjaudu sisään</Link>
           </li>
         )}
+                {user ? (
+          <li>
+            <Link to='/myposts'>Omat ilmoituksesi</Link>
+          </li>
+        ) : (
+          <li></li>)}
       </ul>
     </nav>
   )
