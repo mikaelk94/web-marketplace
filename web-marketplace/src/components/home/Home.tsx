@@ -1,8 +1,16 @@
 import '../../App.css'
 import Navbar from '../navbar/navbar'
 import Search from '../search/Search'
+import { useContext, useEffect } from 'react'
+import { UserContext } from '../../UserContext'
 
 function Home() {
+  const { setPostingCreated } = useContext(UserContext)
+
+  useEffect(() => {
+    setPostingCreated(false)
+  }, [])
+
   return (
     <>
       <Navbar />
