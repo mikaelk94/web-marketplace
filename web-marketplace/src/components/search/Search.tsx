@@ -1,8 +1,8 @@
 import './search.css'
 import '../productCard/productCard.css'
 import { useState, useEffect } from 'react'
-import axios, { AxiosInstance } from 'axios'
 import ProductCard from '../productCard/ProductCard'
+import axiosInstance from '../../axios/axiosInstance'
 
 interface Posting {
   product: {
@@ -19,9 +19,7 @@ interface Category {
   category: string
 }
 
-const instance: AxiosInstance = axios.create({
-  baseURL: 'https://verkkokauppa-api.herokuapp.com/',
-})
+const axios = axiosInstance
 
 const Search = () => {
   const [postings, setPostings] = useState<Posting['product']>([])
@@ -37,7 +35,7 @@ const Search = () => {
     try {
       // Haetaan kaikki postaukset
       if (category === 'Kaikki osastot') {
-        const response = await instance.get('/postings')
+        const response = await axios.get('/postings')
         response.data.map((posting: Category) => {
           if (!categoriesArray.includes(posting.category)) {
             categoriesArray.push(posting.category)
@@ -51,7 +49,7 @@ const Search = () => {
       }
       // Haetaan kategorian perusteella
       else {
-        const response = await instance.get('/postings', {
+        const response = await axios.get('/postings', {
           params: { category: category },
         })
         setPostings(response.data)

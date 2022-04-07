@@ -3,23 +3,22 @@ import './login.css'
 import { useState, useEffect, useRef, useContext } from 'react'
 import Navbar from '../navbar/navbar'
 import { UserContext } from '../../UserContext'
-import axios from 'axios'
+import axiosInstance from '../../axios/axiosInstance'
 import Cookies from 'js-cookie'
 
-const session_url = 'https://verkkokauppa-api.herokuapp.com/login'
+const axios = axiosInstance
 
 function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const { token, setToken } = useContext(UserContext)
-  const { user, setUser } = useContext(UserContext)
+  const { setUser, setToken } = useContext(UserContext)
   const inputRef = useRef<any>(null)
 
   const loginfunc = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     axios
       .post(
-        session_url,
+        '/login',
         {},
         {
           auth: {
@@ -30,6 +29,11 @@ function Login() {
       )
       .then(function (response) {
         if (response.status === 200) {
+          console.log(response.data)
+          window.localStorage.setItem(
+            'user',
+            JSON.stringify(response.data.user)
+          )
           setUser(true)
           setToken(response.data.token)
           Cookies.set('user', 'true')
