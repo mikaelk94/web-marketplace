@@ -2,13 +2,15 @@ import './myposts.css'
 import '../search/search.css'
 import '../productCard/productCard.css'
 import ProductCard from '../productCard/ProductCard'
-import { useState, useEffect } from 'react'
-import axios, { AxiosInstance } from 'axios'
+import { useState, useEffect, useContext } from 'react'
+import axiosInstance from '../../axios/axiosInstance'
 import Navbar from '../navbar/navbar'
+import { UserContext } from '../../UserContext'
+import Cookies from 'js-cookie'
+
 
 interface Posting {
   product: {
-    userId?: string
     title?: string
     price?: string
     images: string[]
@@ -21,11 +23,9 @@ interface Posting {
 interface Category {
   category: string
 }
-
-const instance: AxiosInstance = axios.create({
-  baseURL: 'https://verkkokauppa-api.herokuapp.com/',
-})
+const axios = axiosInstance
 const Myposts = () => {
+  const { token, setUser, setToken} = useContext(UserContext)
   const [postings, setPostings] = useState<Posting['product']>([])
   const [category, setCategory] = useState<string>('Kaikki osastot')
   const [count, setCount] = useState<number>()
@@ -37,9 +37,14 @@ const Myposts = () => {
 
   const getPostings = async () => {
     try {
+      console.log(token)
+      const userData = JSON.parse(localStorage.getItem('user')!)
       // Haetaan kaikki postaukset
       if (category === 'Kaikki osastot') {
-        const response = await instance.get('/postings/')
+        const response = await axios.get(`/postings/${userData.userId}`, { 
+          headers: {
+            Authorization: `Bearer ${token}`,
+        },})
         response.data.map((posting: Category) => {
           if (!categoriesArray.includes(posting.category)) {
             categoriesArray.push(posting.category)
@@ -53,9 +58,10 @@ const Myposts = () => {
       }
       // Haetaan kategorian perusteella
       else {
-        const response = await instance.get('/postings/', {
-          params: { category: category },
-        })
+        const response = await axios.get(`/postings/${userData.userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+        },})
         setPostings(response.data)
         setCount(response.data.length)
         /* console.log(response.data) */
@@ -67,6 +73,12 @@ const Myposts = () => {
 
   useEffect(() => {
     getPostings()
+    const userData = JSON.parse(localStorage.getItem('user')!)
+    const user = Cookies.get('user')
+    const token = Cookies.get('token')
+    if (user && token) {
+      setUser(true)
+      setToken(token)}
   }, [])
 
   return (
@@ -99,6 +111,5 @@ const Myposts = () => {
       </div>
     </div>
   )
-}
-
+        }
 export default Myposts
