@@ -2,41 +2,48 @@ import './navbar.css'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../UserContext'
+import { Nav, Navbar, Container, Offcanvas } from 'react-bootstrap';
 
-function Navbar() {
+
+function Nav_bar() {
   const { user } = useContext(UserContext)
   return (
-    <nav className='NavbarItems'>
-      <h1 className='Navbar-logo'>Web Marketplace</h1>
-      <div className='menu-icon'></div>
-      <ul className='nav-menu'>
-        <li>
-          <Link to='/'>Etusivu</Link>
-        </li>
-        <li>
-          <Link to='/'>Services</Link>
-        </li>
-        <li>
-          <Link to='/'>Products</Link>
-        </li>
-        {user ? (
-          <li>
-            <Link to='/post'>Jätä ilmoitus</Link>
-          </li>
-        ) : (
-          <li>
-            <Link to='/login'>Kirjaudu sisään</Link>
-          </li>
-        )}
-                {user ? (
-          <li>
-            <Link to='/myposts'>Omat ilmoituksesi</Link>
-          </li>
-        ) : (
-          <li></li>)}
-      </ul>
-    </nav>
+    <Navbar bg="light" expand={false}>
+      <Container fluid>
+        <Navbar.Brand id='Header' href="/">Web Marketplace</Navbar.Brand>
+        <Navbar.Toggle aria-controls="offcanvasNavbar" />
+        <Navbar.Offcanvas
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+          placement="end"
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title id="offcanvasNavbarLabel">Web Marketplace</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className="justify-content-end flex-grow-1 pe-3">
+              <Nav.Link href="/">Etusivu</Nav.Link>
+              {user ? (
+
+                <Link to='/post'>Jätä ilmoitus</Link>
+
+              ) : (
+
+                <Nav.Link href='/login'>Kirjaudu sisään</Nav.Link>
+
+              )}
+              {user ? (
+
+                <Nav.Link href='/myposts'>Omat ilmoituksesi</Nav.Link>
+
+              ) : (
+                <Nav.Link></Nav.Link>)}
+            </Nav>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+      </Container>
+    </Navbar>
   )
 }
 
-export default Navbar
+export default Nav_bar

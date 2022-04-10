@@ -2,7 +2,7 @@ import '../../App.css'
 import '../register/register.css'
 import { useState, useRef, useContext } from 'react'
 import { UserContext } from '../../UserContext'
-import Navbar from '../navbar/navbar'
+import Nav_bar from '../navbar/navbar'
 import axios from 'axios'
 
 
@@ -52,7 +52,7 @@ function Register() {
 
     return (
         <div className='etusivu'>
-            <Navbar />
+            <Nav_bar />
             <div className='login'></div>
             <div>
                 <form className='registerForm'>

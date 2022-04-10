@@ -9,6 +9,7 @@ import Cookies from 'js-cookie'
 import Register from './components/register/register'
 import Myposts from './components/myposts/myposts'
 
+
 function App() {
   const [user, setUser] = useState(false)
   const [token, setToken] = useState('null')

@@ -4,10 +4,9 @@ import '../productCard/productCard.css'
 import ProductCard from '../productCard/ProductCard'
 import { useState, useEffect, useContext } from 'react'
 import axiosInstance from '../../axios/axiosInstance'
-import Navbar from '../navbar/navbar'
+import Nav_bar from '../navbar/navbar'
 import { UserContext } from '../../UserContext'
 import Cookies from 'js-cookie'
-
 
 interface Posting {
   product: {
@@ -25,7 +24,7 @@ interface Category {
 }
 const axios = axiosInstance
 const Myposts = () => {
-  const { token, setUser, setToken} = useContext(UserContext)
+  const { token, setUser, setToken } = useContext(UserContext)
   const [postings, setPostings] = useState<Posting['product']>([])
   const [category, setCategory] = useState<string>('Kaikki osastot')
   const [count, setCount] = useState<number>()
@@ -41,10 +40,11 @@ const Myposts = () => {
       const userData = JSON.parse(localStorage.getItem('user')!)
       // Haetaan kaikki postaukset
       if (category === 'Kaikki osastot') {
-        const response = await axios.get(`/postings/${userData.userId}`, { 
+        const response = await axios.get(`/postings/${userData.userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
-        },})
+          },
+        })
         response.data.map((posting: Category) => {
           if (!categoriesArray.includes(posting.category)) {
             categoriesArray.push(posting.category)
@@ -61,7 +61,8 @@ const Myposts = () => {
         const response = await axios.get(`/postings/${userData.userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
-        },})
+          },
+        })
         setPostings(response.data)
         setCount(response.data.length)
         /* console.log(response.data) */
@@ -78,12 +79,13 @@ const Myposts = () => {
     const token = Cookies.get('token')
     if (user && token) {
       setUser(true)
-      setToken(token)}
+      setToken(token)
+    }
   }, [])
 
   return (
     <div className='Site'>
-      <Navbar />
+      <Nav_bar />
       <div className='Search'>
         <input
           type='text'
@@ -111,5 +113,5 @@ const Myposts = () => {
       </div>
     </div>
   )
-        }
+}
 export default Myposts
