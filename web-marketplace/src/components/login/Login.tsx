@@ -1,7 +1,7 @@
 import '../../App.css'
 import './login.css'
 import { useState, useEffect, useRef, useContext } from 'react'
-import Navbar from '../navbar/navbar'
+import Nav_bar from '../navbar/navbar'
 import { UserContext } from '../../UserContext'
 import axiosInstance from '../../axios/axiosInstance'
 import Cookies from 'js-cookie'
@@ -52,7 +52,7 @@ function Login() {
 
   return (
     <div className='etusivu'>
-      <Navbar />
+      <Nav_bar />
       <div className='login'></div>
       <div>
         <form className='loginForm'>

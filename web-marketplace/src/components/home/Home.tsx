@@ -1,5 +1,5 @@
 import '../../App.css'
-import Navbar from '../navbar/navbar'
+import Nav_bar from '../navbar/navbar'
 import Search from '../search/Search'
 import { useContext, useEffect } from 'react'
 import { UserContext } from '../../UserContext'
@@ -13,7 +13,7 @@ function Home() {
 
   return (
     <>
-      <Navbar />
+      <Nav_bar />
       <div>
         <h1 className='hero-header'>Slogan tähän</h1>
       </div>

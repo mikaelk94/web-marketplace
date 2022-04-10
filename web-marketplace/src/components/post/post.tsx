@@ -1,6 +1,6 @@
 import './post.css'
 import '../../App.css'
-import Navbar from '../navbar/navbar'
+import Nav_bar from '../navbar/navbar'
 import axios from '../../axios/axiosInstance'
 import React, { useState, useContext, useEffect, useRef } from 'react'
 import { UserContext } from '../../UserContext'
@@ -121,7 +121,7 @@ function Post() {
 
   return (
     <form onSubmit={(e) => submitPosting(e)}>
-      <Navbar />
+      <Nav_bar />
       <div className='Newpost'>
         <div className='Postbox'>
           <div className='input-div'>

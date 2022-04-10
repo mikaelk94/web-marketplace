@@ -1,30 +1,64 @@
-.NavbarItems{
-    background-color: rgba(0, 0, 0, 0.50);
-    height: 80px;
+.navbar-light .navbar-brand {
+    color: white;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.navbar-light .navbar-toggler {
+    color: rgba(0, 0, 0, .55);
+    border-color: rgba(0, 0, 0, .1);
+    background-color: white;
+}
+
+.bg-light {
+    --bs-bg-opacity: 1;
+    background-color: rgba(0, 0, 0, 0.678) !important;
+}
+
+.offcanvas {
+    position: fixed;
+    bottom: 0;
+    z-index: 1045;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    color: #fff;
+    flex-direction: column;
+    max-width: 100%;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.801);
+    background-clip: padding-box;
+    outline: 0;
+    transition: transform .3s ease-in-out;
 }
 
-.Navbar-logo {
-    color: #fff;
-    justify-self: start;
-    margin-left: 20px;
-    cursor: pointer;
-}
-
-.nav-menu {
-    display: grid;
-    grid-template-columns: repeat(5, auto);
-    grid-gap: 10px;
-    list-style: none;
-    text-align: center;
-    width: 70vw;
-    justify-content: end;
-    margin-right: 2rem;
-    color: #fff;
+.navbar-brand {
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    white-space: nowrap;
+}
+
+.nav-link {
+    color: white;
+}
+
+.offcanvas-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+    color: white;
+}
+
+.btn-close {
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    color: #000;
+    background-color: white;
+
+}
+
+a {
+    color: white;
+    text-decoration: underline;
 }
