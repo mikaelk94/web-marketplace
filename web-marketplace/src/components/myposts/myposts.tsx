@@ -22,7 +22,9 @@ interface Posting {
 interface Category {
   category: string
 }
+
 const axios = axiosInstance
+
 const Myposts = () => {
   const { token, setUser, setToken } = useContext(UserContext)
   const [postings, setPostings] = useState<Posting['product']>([])
@@ -36,7 +38,13 @@ const Myposts = () => {
 
   const getPostings = async () => {
     try {
-      console.log(token)
+      const user = Cookies.get('user')
+      const token = Cookies.get('token')
+      if (user && token) {
+        setUser(true)
+        setToken(token)
+      }
+      console.log('token:', token)
       const userData = JSON.parse(localStorage.getItem('user')!)
       // Haetaan kaikki postaukset
       if (category === 'Kaikki osastot') {
@@ -74,13 +82,6 @@ const Myposts = () => {
 
   useEffect(() => {
     getPostings()
-    const userData = JSON.parse(localStorage.getItem('user')!)
-    const user = Cookies.get('user')
-    const token = Cookies.get('token')
-    if (user && token) {
-      setUser(true)
-      setToken(token)
-    }
   }, [])
 
   return (
