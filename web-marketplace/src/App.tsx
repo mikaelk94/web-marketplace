@@ -4,11 +4,10 @@ import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom'
 import Login from './components/login/Login'
 import Home from './components/home/Home'
 import Post from './components/post/post'
-import { UserContext } from './UserContext'
+import { UserContext } from './context/UserContext'
 import Cookies from 'js-cookie'
 import Register from './components/register/register'
 import Myposts from './components/myposts/myposts'
-
 
 function App() {
   const [user, setUser] = useState(false)
