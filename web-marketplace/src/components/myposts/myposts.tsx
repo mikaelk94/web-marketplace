@@ -5,7 +5,7 @@ import ProductCard from '../productCard/ProductCard'
 import { useState, useEffect, useContext } from 'react'
 import axiosInstance from '../../axios/axiosInstance'
 import Nav_bar from '../navbar/navbar'
-import { UserContext } from '../../UserContext'
+import { UserContext } from '../../context/UserContext'
 import Cookies from 'js-cookie'
 
 interface Posting {

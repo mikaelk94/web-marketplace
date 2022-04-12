@@ -2,7 +2,7 @@ import '../../App.css'
 import Nav_bar from '../navbar/navbar'
 import Search from '../search/Search'
 import { useContext, useEffect } from 'react'
-import { UserContext } from '../../UserContext'
+import { UserContext } from '../../context/UserContext'
 
 function Home() {
   const { setPostingCreated } = useContext(UserContext)

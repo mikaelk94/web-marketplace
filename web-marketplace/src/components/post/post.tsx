@@ -3,7 +3,7 @@ import '../../App.css'
 import Nav_bar from '../navbar/navbar'
 import axios from '../../axios/axiosInstance'
 import React, { useState, useContext, useEffect, useRef } from 'react'
-import { UserContext } from '../../UserContext'
+import { UserContext } from '../../context/UserContext'
 import FormData from 'form-data'
 
 interface Posting {
