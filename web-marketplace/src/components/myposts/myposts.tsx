@@ -1,12 +1,14 @@
 import './myposts.css'
 import '../search/search.css'
 import '../productCard/productCard.css'
-import ProductCard from '../productCard/ProductCard'
 import { useState, useEffect, useContext } from 'react'
+import ProductCard from '../productCard/ProductCard'
 import axiosInstance from '../../axios/axiosInstance'
 import Nav_bar from '../navbar/navbar'
 import { UserContext } from '../../context/UserContext'
 import Cookies from 'js-cookie'
+import { Nav, Button, Modal } from 'react-bootstrap'
+import * as Icon from 'react-bootstrap-icons'
 
 interface Posting {
   product: {
@@ -14,13 +16,10 @@ interface Posting {
     price?: string
     images: string[]
     location?: string
+    id?: string
   }[]
   posting?: string
   category: string[]
-}
-
-interface Category {
-  category: string
 }
 
 const axios = axiosInstance
@@ -28,55 +27,56 @@ const axios = axiosInstance
 const Myposts = () => {
   const { token, setUser, setToken } = useContext(UserContext)
   const [postings, setPostings] = useState<Posting['product']>([])
-  const [category, setCategory] = useState<string>('Kaikki osastot')
   const [count, setCount] = useState<number>()
-  const [input, setInput] = useState('')
-  const [categories, setCategories] = useState<Posting['category']>([
-    'Kaikki osastot',
-  ])
-  let categoriesArray: string[] = ['Kaikki osastot']
+  const [showModal, setShowModal] = useState(false)
+  const [index, setIndex] = useState<number>()
+
+  const handleClose = () => setShowModal(false)
+  const handleShow = (postingIndex: number) => {
+    setShowModal(true)
+    setIndex(postingIndex)
+  }
+
+  const userData = JSON.parse(localStorage.getItem('user')!)
 
   const getPostings = async () => {
+    const user = Cookies.get('user')
+    const token = Cookies.get('token')
+    if (user && token) {
+      setUser(true)
+      setToken(token)
+    }
     try {
-      const user = Cookies.get('user')
-      const token = Cookies.get('token')
-      if (user && token) {
-        setUser(true)
-        setToken(token)
-      }
-      console.log('token:', token)
-      const userData = JSON.parse(localStorage.getItem('user')!)
-      // Haetaan kaikki postaukset
-      if (category === 'Kaikki osastot') {
-        const response = await axios.get(`/postings/${userData.userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        response.data.map((posting: Category) => {
-          if (!categoriesArray.includes(posting.category)) {
-            categoriesArray.push(posting.category)
-            /* console.log(posting.category) */
-          }
-        })
-        setPostings(response.data)
-        setCount(response.data.length)
-        setCategories(categoriesArray)
-        /* console.log(categoriesArray) */
-      }
-      // Haetaan kategorian perusteella
-      else {
-        const response = await axios.get(`/postings/${userData.userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        setPostings(response.data)
-        setCount(response.data.length)
-        /* console.log(response.data) */
-      }
+      // Haetaan kaikki käyttäjän postaukset
+      const response = await axios.get(`/postings/${userData.userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      setPostings(response.data)
+      setCount(response.data.length)
     } catch (err) {
       console.log(err)
+    }
+  }
+
+  const deletePosting = async () => {
+    setShowModal(false)
+    const postingId = postings[index!].id
+    try {
+      const response = await axios.delete(
+        `/postings/${userData.userId}/${postingId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      if (response.status === 202) {
+        getPostings()
+      }
+    } catch (error) {
+      console.error(error)
     }
   }
 
@@ -87,19 +87,16 @@ const Myposts = () => {
   return (
     <div className='Site'>
       <Nav_bar />
+      <Nav variant='tabs' defaultActiveKey='/myposts'>
+        <Nav.Item>
+          <Nav.Link href='/myposts'>Omat ilmoitukset</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href='/account'>Käyttäjätiedot</Nav.Link>
+        </Nav.Item>
+      </Nav>
       <div className='Search'>
-        <input
-          type='text'
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <select onChange={(e) => setCategory(e.target.value)}>
-          {categories.map((posting, i) => (
-            <option key={i}>{posting}</option>
-          ))}
-        </select>
-        <button onClick={getPostings}>Search</button>
-        <h3>{count} hakutulosta</h3>
+        <h3>Omat ilmoitukset: {count} kpl</h3>
         <div className='product-container'>
           {postings.map((posting, i) => (
             <ProductCard
@@ -108,10 +105,37 @@ const Myposts = () => {
               location={posting.location}
               image={posting.images[0]}
               price={posting.price}
+              btnEdit={
+                <Button variant='secondary' active={true}>
+                  <Icon.Wrench />
+                </Button>
+              }
+              btnDelete={
+                <Button
+                  variant='danger'
+                  active={true}
+                  onClick={() => handleShow(i)}
+                >
+                  <Icon.Trash />
+                </Button>
+              }
             />
           ))}
         </div>
       </div>
+      <Modal show={showModal} onHide={handleClose} centered={true} size='sm'>
+        <Modal.Header closeButton>
+          <Modal.Title>Poista ilmoitus?</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer>
+          <Button variant='secondary' onClick={handleClose} active={true}>
+            Sulje
+          </Button>
+          <Button variant='danger' onClick={deletePosting} active={true}>
+            Poista
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   )
 }

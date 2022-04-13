@@ -8,6 +8,7 @@ import { UserContext } from './context/UserContext'
 import Cookies from 'js-cookie'
 import Register from './components/register/register'
 import Myposts from './components/myposts/myposts'
+import Account from './components/account/Account'
 
 function App() {
   const [user, setUser] = useState(false)
@@ -54,6 +55,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/myposts' element={<Myposts />} />
+            <Route path='/account' element={<Account />} />
             <Route
               path='/login'
               element={user ? <Navigate replace to='/' /> : <Login />}
@@ -66,7 +68,9 @@ function App() {
             />
             <Route
               path='/post'
-              element={postingCreated ? <Navigate replace to='/' /> : <Post />}
+              element={
+                postingCreated ? <Navigate replace to='/myposts' /> : <Post />
+              }
             />
           </Routes>
         </UserContext.Provider>

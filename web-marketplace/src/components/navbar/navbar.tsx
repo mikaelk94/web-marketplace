@@ -32,7 +32,7 @@ function Nav_bar() {
                 <Nav.Link href='/login'>Kirjaudu sisään</Nav.Link>
               )}
               {user ? (
-                <Nav.Link href='/myposts'>Omat ilmoituksesi</Nav.Link>
+                <Nav.Link href='/myposts'>Omat tiedot</Nav.Link>
               ) : (
                 <Nav.Link></Nav.Link>
               )}
