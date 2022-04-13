@@ -26,7 +26,7 @@
 }
 
 .input-div input {
-  height: 20px;
+  height: 30px;
   border: none;
   border-radius: 2px;
   background-color: white;
@@ -50,6 +50,7 @@
 
 .contact-div input {
   margin-left: 10px;
+  width: 200px;
 }
 
 .Postbox .btn {
