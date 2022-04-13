@@ -46,7 +46,7 @@ const Search = () => {
         setCount(response.data.length)
         setCategories(categoriesArray)
         /* console.log(categoriesArray) */
-        console.log(response.data)
+        /* console.log(response.data) */
       }
       // Haetaan kategorian perusteella
       else {
