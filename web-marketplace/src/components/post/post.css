@@ -1,7 +1,7 @@
 .Newpost {
   display: flex;
   border: none;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   justify-content: center;
   align-items: center;
 }
@@ -10,57 +10,8 @@
   background-color: #dfdbdb;
   border-radius: 5px;
   height: fit-content;
-  width: 400px;
-}
-
-.input-div {
-  text-align: center;
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-.input-div h3 {
-  text-align: center;
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-.input-div input {
-  height: 30px;
-  border: none;
-  border-radius: 2px;
-  background-color: white;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.contact-div {
-  margin-top: 20px;
-  font-weight: bold;
-  text-align: center;
-  display: grid;
-  row-gap: 10px;
-}
-
-.contact-div p {
-  display: grid;
-  grid-template-columns: 100px 160px;
-  margin-left: 1rem;
-}
-
-.contact-div input {
-  margin-left: 10px;
-  width: 200px;
-}
-
-.Postbox .btn {
-  border: 1px solid black;
-  background-color: #e5e5e5;
-  font-weight: bold;
-  padding: 8px;
-  width: 25%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 150px;
-  cursor: pointer;
+  width: 450px;
+  padding-left: 3em;
+  padding-right: 3em;
+  padding-top: 1em;
 }
