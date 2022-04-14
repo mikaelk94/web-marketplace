@@ -5,7 +5,7 @@ import Nav_bar from '../navbar/navbar'
 import { UserContext } from '../../context/UserContext'
 import axiosInstance from '../../axios/axiosInstance'
 import Cookies from 'js-cookie'
-
+import { Form, Button, } from 'react-bootstrap'
 const axios = axiosInstance
 
 function Login() {
@@ -51,16 +51,15 @@ function Login() {
   }, [])
 
   return (
-    <div className='etusivu'>
+    <Form> 
       <Nav_bar />
-      <div className='login'></div>
-      <div>
-        <form className='loginForm'>
-          <div className='form-inner'>
+    <div className='etusivu'>  
+      <div className='login'>
             <h2>Kirjaudu sisään</h2>
-            <div className='form-group'>
-              <label htmlFor='name'>Käyttäjänimi</label>
-              <input
+            <Form.Group className='form-group1'>
+              <Form.Label htmlFor='name'>Käyttäjänimi</Form.Label>
+              <Form.Control
+                className='form-group1'
                 ref={inputRef}
                 type='text'
                 name='name'
@@ -68,27 +67,41 @@ function Login() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
-            </div>
-            <div className='form-group'>
-              <label htmlFor='password'>Salasana</label>
-              <input
+            </Form.Group>
+            <Form.Group className='form-group2'>
+              <Form.Label htmlFor='password'>Salasana</Form.Label>
+              <Form.Control
+                className='form-group2'
                 type='password'
                 name='password'
                 id='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-            </div>
-            <button className='btn' onClick={loginfunc}>
-              Kirjaudu sisään
-            </button>
-            <div className='link'>
-              <a href='register'>Rekisteröidy</a>
-            </div>
-          </div>
-        </form>
-      </div>
+                  
+            </Form.Group>   
+
+            <Button 
+           onClick={loginfunc}
+            variant='success'
+            className='mt-3 mt-4'
+            size='lg'
+            active={true}
+            type='submit'
+           >
+            Kirjaudu sisään
+          </Button>
+          <Button       
+            variant='success'
+            className='mt-3 mt-4'
+            size='lg'
+            active={true}
+            type='submit'
+            href="register">Rekisteröidy 
+              </Button>
+         </div>           
     </div>
+    </Form>
   )
 }
 
