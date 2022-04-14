@@ -5,6 +5,7 @@ import axios from '../../axios/axiosInstance'
 import React, { useState, useContext, useEffect, useRef } from 'react'
 import { UserContext } from '../../context/UserContext'
 import FormData from 'form-data'
+import { Form, Button, Row, Col } from 'react-bootstrap'
 
 interface Posting {
   userId?: string
@@ -49,7 +50,7 @@ function Post() {
     inputRef.current.focus()
   }, [])
 
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFile = (e: React.ChangeEvent<any>) => {
     e.preventDefault()
 
     for (let i = 0; i < e.target.files!.length; i++) {
@@ -120,57 +121,56 @@ function Post() {
   }
 
   return (
-    <form onSubmit={(e) => submitPosting(e)}>
+    <Form onSubmit={(e) => submitPosting(e)}>
       <Nav_bar />
       <div className='Newpost'>
-        <div className='Postbox'>
-          <div className='input-div'>
-            <h1>Luo uusi ilmoitus</h1>
-            <h3>Otsikko:</h3>
-            <input
+        <div className='Postbox mb-4'>
+          <Form.Group className='mb-2'>
+            <h1 className='mb-3'>Uusi ilmoitus</h1>
+            <Form.Label className='m-0'>Otsikko</Form.Label>
+            <Form.Control
+              className='mb-2'
               ref={inputRef}
               type='text'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-          </div>
-          <div className='input-div'>
-            <h3>Kuvaus:</h3>
-            <input
+            <Form.Label className='m-0'>Kuvaus</Form.Label>
+            <Form.Control
+              className='mb-2'
+              as='textarea'
+              rows={2}
               type='text'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-          </div>
-          <div className='input-div'>
-            <h3>Tuotteen kategoria:</h3>
-            <input
+            <Form.Label className='m-0'>Kategoria</Form.Label>
+            <Form.Control
+              className='mb-2'
               type='text'
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             />
-          </div>
-          <div className='input-div'>
-            <h3>Tuotteen hinta:</h3>
-            <input
-              type='text'
+            <Form.Label className='m-0'>Hinta</Form.Label>
+            <Form.Control
+              type='number'
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
-          </div>
-          <div className='input-div'>
-            <h3>Lisää sijainti:</h3>
-            <input
+          </Form.Group>
+          <Form.Group className='mb-3'>
+            <Form.Label className='m-0'>Sijainti</Form.Label>
+            <Form.Control
+              htmlSize={1}
               type='text'
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
-          </div>
-          <div className='input-div'>
-            <h3>Lisää kuvia tuotteesta:</h3>
-            <input
+          </Form.Group>
+          <Form.Group controlId='imageInput'>
+            <h4 className='mb-2'>Lisää kuvia</h4>
+            <Form.Control
               style={{ cursor: 'pointer' }}
-              id='imageInput'
               type='file'
               accept='image/jpg'
               onChange={(e) => {
@@ -178,54 +178,71 @@ function Post() {
               }}
               multiple
             />
-          </div>
-          <div className='contact-div'>
-            Myyjän tiedot:
-            <p>
+          </Form.Group>
+          <Form.Group as={Row} className='mt-4'>
+            <h4>Myyjän tiedot</h4>
+            <Form.Label column sm='4'>
               Etunimi
-              <input
+            </Form.Label>
+            <Col sm='8'>
+              <Form.Control
                 type='text'
                 value={userInfo.firstName}
                 onChange={(e) =>
                   setUserInfo({ ...userInfo, firstName: e.target.value })
                 }
               />
-            </p>
-            <p>
+            </Col>
+            <Form.Label column sm='4'>
               Sukunimi
-              <input
+            </Form.Label>
+            <Col sm='8'>
+              <Form.Control
+                className=''
                 type='text'
                 value={userInfo.lastName}
                 onChange={(e) =>
                   setUserInfo({ ...userInfo, lastName: e.target.value })
                 }
               />
-            </p>
-            <p>
+            </Col>
+            <Form.Label column sm='4'>
               Puhelin
-              <input
+            </Form.Label>
+            <Col sm='8'>
+              <Form.Control
                 type='text'
                 value={userInfo.phoneNum}
                 onChange={(e) =>
                   setUserInfo({ ...userInfo, phoneNum: e.target.value })
                 }
               />
-            </p>
-            <p>
+            </Col>
+            <Form.Label column sm='4'>
               Sähköposti
-              <input
+            </Form.Label>
+            <Col sm='8'>
+              <Form.Control
                 type='text'
                 value={userInfo.email}
                 onChange={(e) =>
                   setUserInfo({ ...userInfo, email: e.target.value })
                 }
               />
-            </p>
-          </div>
-          <button className='btn'>Submit</button>
+            </Col>
+          </Form.Group>
+          <Button
+            variant='success'
+            className='mt-3 mb-4'
+            size='lg'
+            active={true}
+            type='submit'
+          >
+            Submit
+          </Button>
         </div>
       </div>
-    </form>
+    </Form>
   )
 }
 
