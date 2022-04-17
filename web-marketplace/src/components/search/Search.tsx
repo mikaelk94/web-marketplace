@@ -83,6 +83,7 @@ const Search = () => {
       <div className='product-container'>
         {postings.map((posting, i) => (
           <ProductCard
+            posting={posting}
             key={i}
             title={posting.title}
             location={posting.location}
