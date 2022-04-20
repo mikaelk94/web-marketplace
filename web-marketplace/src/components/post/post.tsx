@@ -125,8 +125,8 @@ function Post() {
       <Nav_bar />
       <div className='Newpost'>
         <div className='Postbox mb-4'>
+          <h1 className='mb-3'>Uusi ilmoitus</h1>
           <Form.Group className='mb-2'>
-            <h1 className='mb-3'>Uusi ilmoitus</h1>
             <Form.Label className='m-0'>Otsikko</Form.Label>
             <Form.Control
               className='mb-2'
@@ -167,7 +167,7 @@ function Post() {
               onChange={(e) => setLocation(e.target.value)}
             />
           </Form.Group>
-          <Form.Group controlId='imageInput'>
+          <Form.Group controlId='imageInput' style={{ margin: '0rem 2rem' }}>
             <h4 className='mb-2'>Lisää kuvia</h4>
             <Form.Control
               style={{ cursor: 'pointer' }}
@@ -232,8 +232,8 @@ function Post() {
             </Col>
           </Form.Group>
           <Button
+            style={{ margin: '1.5rem 0rem 0rem 0rem', float: 'right' }}
             variant='success'
-            className='mt-3 mb-4'
             size='lg'
             active={true}
             type='submit'

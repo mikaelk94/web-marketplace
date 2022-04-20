@@ -10,6 +10,7 @@ import Register from './components/register/register'
 import Myposts from './components/myposts/myposts'
 import Account from './components/account/Account'
 import Product from './components/product/Product'
+import EditPosting from './components/editPosting/EditPosting'
 
 function App() {
   const [user, setUser] = useState(false)
@@ -17,6 +18,7 @@ function App() {
   const [register, setRegister] = useState(false)
   const [postingCreated, setPostingCreated] = useState(false)
   const [product, setProduct] = useState(false)
+  const [postingEdited, setPostingEdited] = useState(false)
 
   const userValues = useMemo(
     () => ({
@@ -30,6 +32,8 @@ function App() {
       setPostingCreated,
       product,
       setProduct,
+      postingEdited,
+      setPostingEdited,
     }),
     [
       user,
@@ -42,6 +46,8 @@ function App() {
       setPostingCreated,
       product,
       setProduct,
+      postingEdited,
+      setPostingEdited,
     ]
   )
 
@@ -63,6 +69,16 @@ function App() {
             <Route path='/myposts' element={<Myposts />} />
             <Route path='/account' element={<Account />} />
             <Route path='/product' element={<Product />} />
+            <Route
+              path='/myposts/edit'
+              element={
+                postingEdited ? (
+                  <Navigate replace to='/myposts' />
+                ) : (
+                  <EditPosting />
+                )
+              }
+            />
             <Route
               path='/login'
               element={user ? <Navigate replace to='/' /> : <Login />}

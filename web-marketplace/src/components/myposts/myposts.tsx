@@ -9,6 +9,7 @@ import { UserContext } from '../../context/UserContext'
 import Cookies from 'js-cookie'
 import { Nav, Button, Modal } from 'react-bootstrap'
 import * as Icon from 'react-bootstrap-icons'
+import { Link } from 'react-router-dom'
 
 interface Posting {
   product: {
@@ -25,7 +26,7 @@ interface Posting {
 const axios = axiosInstance
 
 const Myposts = () => {
-  const { token, setUser, setToken } = useContext(UserContext)
+  const { token, setUser, setToken, setPostingEdited } = useContext(UserContext)
   const [postings, setPostings] = useState<Posting['product']>([])
   const [count, setCount] = useState<number>()
   const [showModal, setShowModal] = useState(false)
@@ -81,6 +82,7 @@ const Myposts = () => {
   }
 
   useEffect(() => {
+    setPostingEdited(false)
     getPostings()
   }, [])
 
@@ -106,16 +108,20 @@ const Myposts = () => {
               image={posting.images[0]}
               price={posting.price}
               btnEdit={
-                <Button variant='secondary' active={true}>
-                  <Icon.Wrench />
-                </Button>
+                <Link
+                  to='/myposts/edit'
+                  state={{
+                    props: posting,
+                    from: '/myposts',
+                  }}
+                >
+                  <Button style={{ width: '100%' }} variant='secondary'>
+                    <Icon.Wrench />
+                  </Button>
+                </Link>
               }
               btnDelete={
-                <Button
-                  variant='danger'
-                  active={true}
-                  onClick={() => handleShow(i)}
-                >
+                <Button variant='danger' onClick={() => handleShow(i)}>
                   <Icon.Trash />
                 </Button>
               }

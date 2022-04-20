@@ -4,9 +4,33 @@
 }
 
 .Search h3 {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .Search select {
   text-transform: capitalize;
+  border: 1px solid #ccc;
+}
+
+.Search input {
+  border: 1px solid #ccc;
+  border-right: none;
+}
+
+.search-div {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 40% 30% 15%;
+}
+
+.btn-search {
+  margin-left: 0.5rem;
+  width: 100%;
+}
+
+@media only screen and (min-width: 650px) {
+  /* For desktop: */
+  .search-div {
+    grid-template-columns: 300px 150px 100px;
+  }
 }
