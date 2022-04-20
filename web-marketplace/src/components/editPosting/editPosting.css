@@ -1,12 +1,14 @@
-.Newpost {
+.edit-post-div {
+  margin: auto;
   display: flex;
   border: none;
   margin-top: 2.5rem;
+  margin-bottom: 2rem;
   justify-content: center;
   align-items: center;
 }
 
-.Postbox {
+.edit-box {
   background-color: #dfdbdb;
   border-radius: 5px;
   height: fit-content;
@@ -19,7 +21,7 @@
 
 @media only screen and (max-width: 610px) {
   /* For desktop: */
-  .Postbox {
+  .edit-box {
     width: 95%;
   }
 }

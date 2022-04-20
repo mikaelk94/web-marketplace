@@ -5,7 +5,7 @@ import Nav_bar from '../navbar/navbar'
 import { UserContext } from '../../context/UserContext'
 import axiosInstance from '../../axios/axiosInstance'
 import Cookies from 'js-cookie'
-import { Form, Button, } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 const axios = axiosInstance
 
 function Login() {
@@ -51,56 +51,55 @@ function Login() {
   }, [])
 
   return (
-    <Form> 
+    <Form>
       <Nav_bar />
-    <div className='etusivu'>  
-      <div className='login'>
-            <h2>Kirjaudu sisään</h2>
-            <Form.Group className='form-group1'>
-              <Form.Label htmlFor='name'>Käyttäjänimi</Form.Label>
-              <Form.Control
-                className='form-group1'
-                ref={inputRef}
-                type='text'
-                name='name'
-                id='username'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className='form-group2'>
-              <Form.Label htmlFor='password'>Salasana</Form.Label>
-              <Form.Control
-                className='form-group2'
-                type='password'
-                name='password'
-                id='password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-                  
-            </Form.Group>   
+      <div className='etusivu'>
+        <div className='login'>
+          <h2>Kirjaudu sisään</h2>
+          <Form.Group className='form-group1'>
+            <Form.Label htmlFor='name'>Käyttäjänimi</Form.Label>
+            <Form.Control
+              className='form-group1'
+              ref={inputRef}
+              type='text'
+              name='name'
+              id='username'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className='form-group2'>
+            <Form.Label htmlFor='password'>Salasana</Form.Label>
+            <Form.Control
+              className='form-group2'
+              type='password'
+              name='password'
+              id='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
 
-            <Button 
-           onClick={loginfunc}
+          <Button
+            onClick={loginfunc}
             variant='success'
             className='mt-3 mt-4'
             size='lg'
-            active={true}
             type='submit'
-           >
+          >
             Kirjaudu sisään
           </Button>
-          <Button       
+          <Button
             variant='success'
             className='mt-3 mt-4'
             size='lg'
-            active={true}
             type='submit'
-            href="register">Rekisteröidy 
-              </Button>
-         </div>           
-    </div>
+            href='register'
+          >
+            Rekisteröidy
+          </Button>
+        </div>
+      </div>
     </Form>
   )
 }

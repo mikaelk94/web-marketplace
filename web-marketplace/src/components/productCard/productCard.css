@@ -11,7 +11,7 @@
 }
 
 .product-card {
-  border: 1px solid black;
+  border: 1px solid #ccc;
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
   height: 350px;

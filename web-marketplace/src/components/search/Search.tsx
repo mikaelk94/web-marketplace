@@ -3,6 +3,8 @@ import '../productCard/productCard.css'
 import { useState, useEffect } from 'react'
 import ProductCard from '../productCard/ProductCard'
 import axiosInstance from '../../axios/axiosInstance'
+import * as Icon from 'react-bootstrap-icons'
+import { Button } from 'react-bootstrap'
 
 interface Posting {
   product: {
@@ -68,17 +70,25 @@ const Search = () => {
 
   return (
     <div className='Search'>
-      <input
-        type='text'
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <select onChange={(e) => setCategory(e.target.value)}>
-        {categories.map((posting, i) => (
-          <option key={i}>{posting}</option>
-        ))}
-      </select>
-      <button onClick={getPostings}>Search</button>
+      <div className='search-div'>
+        <input
+          type='text'
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <select onChange={(e) => setCategory(e.target.value)}>
+          {categories.map((posting, i) => (
+            <option key={i}>{posting}</option>
+          ))}
+        </select>
+        <Button
+          className='btn-search'
+          variant='secondary'
+          onClick={getPostings}
+        >
+          Hae
+        </Button>
+      </div>
       <h3>{count} hakutulosta</h3>
       <div className='product-container'>
         {postings.map((posting, i) => (
