@@ -6,6 +6,13 @@
   align-items: center;
 }
 
+.btn {
+  background-color: black !important;
+  border-color: black !important;
+}
+
+
+
 .login {
   background-color: #dfdbdb;
   border-radius: 5px;

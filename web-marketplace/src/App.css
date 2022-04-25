@@ -3,6 +3,7 @@
   background-color: #e5e5e5;
   min-height: 100vh;
   padding-bottom: 1em;
+  background-image: url("https://images.hdqwalls.com/wallpapers/minimalistic-abstract-colors-simple-background-5k-fc.jpg")
 }
 
 .hero-header {
@@ -10,7 +11,7 @@
   flex-direction: column;
   text-align: center;
   font-size: calc(20px + 2vmin);
-  color: rgb(0, 0, 0);
+  color: white;
   padding: 2em;
   margin: 0;
 }
