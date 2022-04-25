@@ -6,6 +6,10 @@
   align-items: center;
 }
 
+.btn {
+  margin-right: 3px;
+}
+
 .register {
   background-color: #dfdbdb;
   border-radius: 5px;
@@ -16,9 +20,9 @@
   padding-top: 1em;
   padding-bottom: 30px;
 }
-.errorLabel
-{
-color: red;
+
+.errorLabel {
+  color: red;
 
 
 
