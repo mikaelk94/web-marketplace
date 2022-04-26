@@ -15,7 +15,7 @@ function Home() {
     <>
       <Nav_bar />
       <div>
-        <h1 className='hero-header'>Slogan tähän</h1>
+        <h1 className='hero-header'>Osta & Myy</h1>
       </div>
       <Search />
     </>

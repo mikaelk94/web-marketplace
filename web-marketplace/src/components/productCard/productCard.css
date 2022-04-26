@@ -11,7 +11,7 @@
 }
 
 .product-card {
-  border: 1px solid #ccc;
+  border: 1px solid rgb(255, 255, 255);
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
   height: 350px;
@@ -27,11 +27,13 @@
   margin-left: 15px;
   font-weight: bold;
 }
+
 .product-location {
   text-transform: capitalize;
   text-align: left;
   margin-left: 15px;
 }
+
 .product-price {
   text-align: right;
   font-weight: bold;
@@ -39,6 +41,7 @@
   margin-right: 20px;
   margin-top: 25px;
 }
+
 .image-div {
   margin-top: 0.5em;
   height: 13em;

@@ -3,7 +3,6 @@ import '../productCard/productCard.css'
 import { useState, useEffect } from 'react'
 import ProductCard from '../productCard/ProductCard'
 import axiosInstance from '../../axios/axiosInstance'
-import * as Icon from 'react-bootstrap-icons'
 import { Button } from 'react-bootstrap'
 
 interface Posting {

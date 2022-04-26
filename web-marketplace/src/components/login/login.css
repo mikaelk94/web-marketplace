@@ -11,15 +11,28 @@
   border-color: black !important;
 }
 
-
+.btn:hover {
+  background-color: rgb(44, 44, 44) !important;
+  border-color: rgb(44, 44, 44) !important;
+}
 
 .login {
   background-color: #dfdbdb;
   border-radius: 5px;
   height: fit-content;
   width: 450px;
-  height: 325px;
+  height: fit-content;
+  padding-bottom: 2rem;
   padding-left: 3em;
   padding-right: 3em;
   padding-top: 1em;
+}
+
+.error {
+  text-transform: none;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem;
+  color: red;
+  font-weight: 600;
 }

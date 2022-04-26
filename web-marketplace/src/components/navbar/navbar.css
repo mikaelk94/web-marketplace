@@ -38,6 +38,10 @@
   white-space: nowrap;
 }
 
+.navbar-brand:hover {
+  color: rgb(177, 174, 174) !important;
+}
+
 .nav-link {
   color: white;
 }
@@ -87,7 +91,12 @@ a {
 }
 
 .custom-nav-link:hover {
-  color: black;
+  color: rgb(177, 174, 174);
+  font-weight: bold;
+}
+
+.custom-nav-link-active {
+  color: white;
 }
 
 @media only screen and (max-width: 800px) {

@@ -20,8 +20,10 @@ function Register() {
   const [email, setEmail] = useState('')
   const [phonenumber, setPhonenumber] = useState('')
   const [dateofbirth, setDateofbirth] = useState('')
+  const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const inputRef = useRef<any>(null)
-  const { register, setRegister } = useContext(UserContext)
+  const { setRegister } = useContext(UserContext)
 
   const sendJson = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -37,11 +39,12 @@ function Register() {
           phoneNum: phonenumber,
           dateofbirth: dateofbirth,
         })
-        if ((response.status = 201)) {
+        if (response.status === 201) {
           setRegister(true)
         }
       } catch (error: any) {
-        document.getElementById('error')!.innerHTML = error.response.data.error
+        setError(true)
+        setErrorMessage(error.response.data.error)
       }
     } else {
       checkpassword()
@@ -54,9 +57,7 @@ function Register() {
       <div className='etusivu'>
         <div className='register'>
           <h2>Rekisteröidy</h2>
-          <div className='errorLabel'>
-            <label htmlFor='error' id='error'></label>
-          </div>
+          {error && <div className='error'>{errorMessage}</div>}
           <Form.Group className='form-group1'>
             <Form.Label htmlFor='name'>Käyttäjänimi</Form.Label>
             <Form.Control
@@ -149,8 +150,9 @@ function Register() {
             Rekisteröidy
           </Button>
           <Button
-            variant='success'
+            variant='secondary'
             className='mt-3 mt-4'
+            style={{ marginLeft: '5px' }}
             size='lg'
             type='submit'
             href='login'

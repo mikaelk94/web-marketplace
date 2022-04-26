@@ -7,7 +7,7 @@ import axiosInstance from '../../axios/axiosInstance'
 import Nav_bar from '../navbar/navbar'
 import { UserContext } from '../../context/UserContext'
 import Cookies from 'js-cookie'
-import { Nav, Button, Modal } from 'react-bootstrap'
+import { Nav, Button, Modal, Navbar } from 'react-bootstrap'
 import * as Icon from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
 
@@ -121,7 +121,11 @@ const Myposts = () => {
                 </Link>
               }
               btnDelete={
-                <Button variant='danger' onClick={() => handleShow(i)}>
+                <Button
+                  style={{ width: '100%' }}
+                  variant='danger'
+                  onClick={() => handleShow(i)}
+                >
                   <Icon.Trash />
                 </Button>
               }
@@ -134,11 +138,11 @@ const Myposts = () => {
           <Modal.Title>Poista ilmoitus?</Modal.Title>
         </Modal.Header>
         <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose} active={true}>
-            Sulje
-          </Button>
-          <Button variant='danger' onClick={deletePosting} active={true}>
+          <Button variant='danger' onClick={deletePosting}>
             Poista
+          </Button>
+          <Button variant='secondary' onClick={handleClose}>
+            Sulje
           </Button>
         </Modal.Footer>
       </Modal>

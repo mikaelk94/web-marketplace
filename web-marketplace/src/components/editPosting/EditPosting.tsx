@@ -166,19 +166,19 @@ const EditPosting = () => {
           <Form.Group style={{ textAlign: 'center' }}>
             <Button
               style={{ margin: '1rem 4rem 0rem 0rem' }}
-              variant='secondary'
-              size='lg'
-              href='/myposts'
-            >
-              Peruuta
-            </Button>
-            <Button
-              style={{ margin: '1rem 0rem 0rem 0rem' }}
               variant='success'
               size='lg'
               type='submit'
             >
               Tallenna
+            </Button>
+            <Button
+              style={{ margin: '1rem 0rem 0rem 0rem' }}
+              variant='secondary'
+              size='lg'
+              href='/myposts'
+            >
+              Peruuta
             </Button>
           </Form.Group>
         </div>
