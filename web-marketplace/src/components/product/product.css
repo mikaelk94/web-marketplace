@@ -44,6 +44,8 @@
 
 .description {
   margin-left: 1rem;
+  width: 95%;
+  word-wrap: break-word;
 }
 
 .seller-title {

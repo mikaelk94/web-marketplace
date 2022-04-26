@@ -11,10 +11,12 @@ const axios = axiosInstance
 function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const { setUser, setToken } = useContext(UserContext)
   const inputRef = useRef<any>(null)
 
-  const loginfunc = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     axios
       .post(
@@ -41,8 +43,14 @@ function Login() {
         }
       })
       .catch(function (error) {
-        console.log('Error on Authentication')
-        console.log(error)
+        if (error.response.status === 401) {
+          setError(true)
+          setErrorMessage('Väärä tunnus tai salasana')
+        } else {
+          setError(true)
+          setErrorMessage('virhe kirjautumisessa')
+          console.error(error)
+        }
       })
   }
 
@@ -57,11 +65,13 @@ function Login() {
         <div className='login'>
           <h2>Kirjaudu sisään</h2>
           <Form.Group className='form-group1'>
+            {error && <div className='error'>{errorMessage}</div>}
             <Form.Label htmlFor='name'>Käyttäjänimi</Form.Label>
             <Form.Control
               className='form-group1'
               ref={inputRef}
               type='text'
+              autoComplete='username'
               name='name'
               id='username'
               value={username}
@@ -73,28 +83,27 @@ function Login() {
             <Form.Control
               className='form-group2'
               type='password'
+              autoComplete='current-password'
               name='password'
               id='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
-
           <Button
-            onClick={loginfunc}
+            onClick={handleLogin}
             variant='success'
-            className='mt-3 mt-4'
+            className='mt-4'
             size='lg'
             type='submit'
           >
             Kirjaudu sisään
           </Button>
           <Button
-            variant='success'
-            className='mt-3 mt-4'
+            variant='secondary'
+            className='mt-4'
             size='lg'
-            type='submit'
-            href='register'
+            href='/register'
           >
             Rekisteröidy
           </Button>

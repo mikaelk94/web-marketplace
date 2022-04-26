@@ -25,6 +25,7 @@
 }
 
 .btn-search {
+  font-weight: bold;
   margin-left: 0.5rem;
   width: 100%;
   background-color: #fff !important;
@@ -32,8 +33,12 @@
   color: black;
 }
 
-@media only screen and (min-width: 650px) {
+.btn-search:hover {
+  color: black;
+  background-color: rgb(206, 204, 204) !important;
+}
 
+@media only screen and (min-width: 650px) {
   /* For desktop: */
   .search-div {
     grid-template-columns: 300px 150px 100px;

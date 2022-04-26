@@ -13,16 +13,18 @@ const Product = () => {
     <>
       <Nav_bar />
       <div className='product-div'>
-        <Carousel variant='dark'>
-          {images.map((image: string, i: number) => (
-            <Carousel.Item className='mb-4' key={i}>
-              <img
-                className='img'
-                src={image.replace('upload/', 'upload/c_fit/')}
-              />
-            </Carousel.Item>
-          ))}
-        </Carousel>
+        {images.length !== 0 && (
+          <Carousel variant='dark'>
+            {images.map((image: string, i: number) => (
+              <Carousel.Item className='mb-4' key={i}>
+                <img
+                  className='img'
+                  src={image.replace('upload/', 'upload/c_fit/')}
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        )}
         <h5 className='title'>
           {title} <span className='price'>{price} €</span>
         </h5>

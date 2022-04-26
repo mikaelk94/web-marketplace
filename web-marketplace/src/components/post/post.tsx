@@ -30,6 +30,8 @@ interface Posting {
 
 function Post() {
   const { token, setPostingCreated } = useContext(UserContext)
+  const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const [title, setTitle] = useState<Posting['title']>('')
   const [description, setDescription] = useState<Posting['description']>('')
   const [category, setCategory] = useState<Posting['category']>('')
@@ -75,6 +77,7 @@ function Post() {
       if (response.status === 200) {
         setPostingCreated(true)
         console.log('Cloudinary response:', response)
+      } else {
       }
     } catch (err) {
       console.error(err)
@@ -115,7 +118,13 @@ function Post() {
         uploadImages(response.data._id)
         console.log('API response:', response.data)
       }
-    } catch (err) {
+    } catch (err: any) {
+      setError(true)
+      if (err.response.status === 400) {
+        setErrorMessage('Missing information')
+      } else {
+        setErrorMessage('Virhe ilmoituksen luonnissa')
+      }
       console.error(err)
     }
   }
@@ -126,6 +135,7 @@ function Post() {
       <div className='Newpost'>
         <div className='Postbox mb-4'>
           <h1 className='mb-3'>Uusi ilmoitus</h1>
+          {error && <div className='error'>{errorMessage}</div>}
           <Form.Group className='mb-2'>
             <Form.Label className='m-0'>Otsikko</Form.Label>
             <Form.Control
@@ -181,7 +191,7 @@ function Post() {
           </Form.Group>
           <Form.Group as={Row} className='mt-4'>
             <h4>Myyjän tiedot</h4>
-            <Form.Label column sm='4'>
+            <Form.Label column sm='3' style={{ marginLeft: '1rem' }}>
               Etunimi
             </Form.Label>
             <Col sm='8'>
@@ -193,7 +203,7 @@ function Post() {
                 }
               />
             </Col>
-            <Form.Label column sm='4'>
+            <Form.Label column sm='3' style={{ marginLeft: '1rem' }}>
               Sukunimi
             </Form.Label>
             <Col sm='8'>
@@ -206,7 +216,7 @@ function Post() {
                 }
               />
             </Col>
-            <Form.Label column sm='4'>
+            <Form.Label column sm='3' style={{ marginLeft: '1rem' }}>
               Puhelin
             </Form.Label>
             <Col sm='8'>
@@ -218,7 +228,7 @@ function Post() {
                 }
               />
             </Col>
-            <Form.Label column sm='4'>
+            <Form.Label column sm='3' style={{ marginLeft: '1rem' }}>
               Sähköposti
             </Form.Label>
             <Col sm='8'>
@@ -231,15 +241,30 @@ function Post() {
               />
             </Col>
           </Form.Group>
-          <Button
-            style={{ margin: '1.5rem 0rem 0rem 0rem', float: 'right' }}
-            variant='success'
-            size='lg'
-            active={true}
-            type='submit'
-          >
-            Submit
-          </Button>
+          <Form.Group style={{ textAlign: 'center' }}>
+            <Button
+              style={{
+                margin: '1.5rem 0rem 0rem 0px',
+                width: '130px',
+              }}
+              variant='success'
+              size='lg'
+              type='submit'
+            >
+              Lähetä
+            </Button>
+            <Button
+              style={{
+                margin: '1.5rem 0rem 0rem 2rem',
+                width: '130px',
+              }}
+              variant='secondary'
+              size='lg'
+              href='/'
+            >
+              Peruuta
+            </Button>
+          </Form.Group>
         </div>
       </div>
     </Form>
