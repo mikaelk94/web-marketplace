@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.btn {
+/* .btn {
   background-color: black !important;
   border-color: black !important;
 }
@@ -14,7 +14,7 @@
 .btn:hover {
   background-color: rgb(44, 44, 44) !important;
   border-color: rgb(44, 44, 44) !important;
-}
+} */
 
 .login {
   background-color: #dfdbdb;
@@ -35,4 +35,11 @@
   padding: 0.3rem;
   color: red;
   font-weight: 600;
+}
+
+@media only screen and (max-width: 610px) {
+  /* For desktop: */
+  .login {
+    width: 95%;
+  }
 }

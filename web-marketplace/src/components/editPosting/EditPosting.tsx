@@ -165,7 +165,8 @@ const EditPosting = () => {
           />
           <Form.Group style={{ textAlign: 'center' }}>
             <Button
-              style={{ margin: '1rem 4rem 0rem 0rem' }}
+              className='mt-3'
+              style={{ marginRight: '2rem' }}
               variant='success'
               size='lg'
               type='submit'
@@ -173,7 +174,7 @@ const EditPosting = () => {
               Tallenna
             </Button>
             <Button
-              style={{ margin: '1rem 0rem 0rem 0rem' }}
+              className='mt-3'
               variant='secondary'
               size='lg'
               href='/myposts'
