@@ -90,23 +90,25 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
-          <Button
-            onClick={handleLogin}
-            variant='success'
-            className='mt-4'
-            size='lg'
-            type='submit'
-          >
-            Kirjaudu sisään
-          </Button>
-          <Button
-            variant='secondary'
-            className='mt-4'
-            size='lg'
-            href='/register'
-          >
-            Rekisteröidy
-          </Button>
+          <Form.Group style={{ textAlign: 'center' }}>
+            <Button
+              onClick={handleLogin}
+              variant='success'
+              className='mt-4'
+              size='lg'
+              type='submit'
+            >
+              Kirjaudu sisään
+            </Button>
+            <Button
+              variant='secondary'
+              className='mt-4'
+              size='lg'
+              href='/register'
+            >
+              Rekisteröidy
+            </Button>
+          </Form.Group>
         </div>
       </div>
     </Form>

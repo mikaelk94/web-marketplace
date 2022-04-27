@@ -1,6 +1,6 @@
 .product-div {
   margin: auto;
-  width: 90%;
+  width: 95%;
   justify-content: center;
   align-items: center;
   background-color: white;
@@ -57,7 +57,7 @@
 
 .contact-info {
   row-gap: 10px;
-  column-gap: 10px;
+  column-gap: 20px;
   grid-template-columns: 25% 75%;
   display: grid;
   margin-left: 1rem;
@@ -72,5 +72,8 @@
   /* For desktop: */
   .product-div {
     width: 650px;
+  }
+  .contact-info {
+    column-gap: 10px;
   }
 }

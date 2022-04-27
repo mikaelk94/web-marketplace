@@ -28,3 +28,10 @@
   color: red;
   font-weight: 600;
 }
+
+@media only screen and (max-width: 610px) {
+  /* For desktop: */
+  .register {
+    width: 95%;
+  }
+}

@@ -139,26 +139,27 @@ function Register() {
               onChange={(e) => setDateofbirth(e.target.value)}
             />
           </Form.Group>
-
-          <Button
-            onClick={sendJson}
-            variant='success'
-            className='mt-3 mt-4'
-            size='lg'
-            type='submit'
-          >
-            Rekisteröidy
-          </Button>
-          <Button
-            variant='secondary'
-            className='mt-3 mt-4'
-            style={{ marginLeft: '5px' }}
-            size='lg'
-            type='submit'
-            href='login'
-          >
-            Takaisin
-          </Button>
+          <Form.Group style={{ textAlign: 'center' }}>
+            <Button
+              onClick={sendJson}
+              variant='success'
+              className='mt-3 mt-4'
+              size='lg'
+              type='submit'
+            >
+              Rekisteröidy
+            </Button>
+            <Button
+              variant='secondary'
+              className='mt-3 mt-4'
+              style={{ marginLeft: '5px' }}
+              size='lg'
+              type='submit'
+              href='login'
+            >
+              Takaisin
+            </Button>
+          </Form.Group>
         </div>
       </div>
     </Form>

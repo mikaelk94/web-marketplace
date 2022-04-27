@@ -30,7 +30,7 @@
   width: 100%;
   background-color: #fff !important;
   border-color: #fff !important;
-  color: black;
+  color: black !important;
 }
 
 .btn-search:hover {
