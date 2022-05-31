@@ -1,5 +1,7 @@
 Web marketplace application with React & TypeScript
 
+https://verkkokauppa-front-end.herokuapp.com/
+
 Application features:
 - User registration and login
 - Browsing and examination of the marketplace postings
